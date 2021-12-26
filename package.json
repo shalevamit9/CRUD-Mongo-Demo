@@ -12,10 +12,10 @@
         "lint": "eslint src/**/*.ts",
         "format": "prettier src/**/*.ts --write",
         "prepare": "husky install",
-        "emit-d": "tsc --declaration --emitDeclarationOnly",
-        "test": "mocha",
-        "test-w": "mocha --watch",
-        "coverage": "rm -rf coverage && nyc mocha"
+        "emit-d": "rm -rf typings && tsc",
+        "test": "SWC_NODE_PROJECT='./tsconfig.test.json' mocha",
+        "test-w": "SWC_NODE_PROJECT='./tsconfig.test.json' mocha --watch",
+        "coverage": "rm -rf coverage && SWC_NODE_PROJECT='./tsconfig.test.json' nyc mocha"
     },
     "keywords": [
         "typescript",

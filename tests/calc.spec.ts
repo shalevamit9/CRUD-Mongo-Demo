@@ -23,6 +23,21 @@ describe('The calc module',  ()=> {
 
     })
 
+    /* context(`#multiply`,()=> {
+
+        it(`should exist`) // <-- pending...
+        
+        it(`should multiply two numbers`,()=>{
+            throw new Error('kabooom!!!') // <-- test fails...
+            let actual = multiply(2,3);
+            expect(actual).to.deep.equal([6])
+        })
+        it(`should muliply several numbers`,()=> {
+            // passing as long as assertion didn't fail
+            // or an error was thrown...
+        })
+
+    }) */
     context(`#multiply`,()=> {
 
         it(`should exist`,()=> {
@@ -32,7 +47,7 @@ describe('The calc module',  ()=> {
 
         it(`should multiply two numbers`,()=> {
             let actual = multiply(2,3);
-            expect(actual).to.eql([6])
+            expect(actual).to.deep.equal([6])
         })
 
         it(`should muliply several numbers`,()=> {
@@ -42,18 +57,15 @@ describe('The calc module',  ()=> {
 
     })
     
-    // it('should return an array of resolved values', async ()=> {
-    //     const promise1 = echo("first", 30);
-    //     const promise2 = echo("second", 30);
-    //     const promise3 = echo("third", 30);
+    context(`#async tests`, ()=> {
+        const delay = (ms:number) => new Promise((resolve) => setTimeout(resolve, ms));
 
-    //     let actual = await all([ promise1, promise2, promise3 ]);
-            
-            
-    //         expect(actual).to.eql(['first','second','third'])
-    
-    //     });
-
+        it(`should muliply several numbers with delay`, async ()=> {
+            await delay(300);
+            let actual = multiply(2,3,4,5,6);
+            expect(actual).to.deep.equal([6,8,10,12])
+        })
+    })
 
 });
 
