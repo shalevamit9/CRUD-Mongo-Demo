@@ -1,5 +1,7 @@
 import { expect } from "chai";
-import { sum, multiply } from "../src/calc";
+import { sum, multiply, multiplyR } from "../src/calc.js";
+import { delay } from "../src/utils.js";
+
 
 
 describe('The calc module',  ()=> {
@@ -58,7 +60,7 @@ describe('The calc module',  ()=> {
     })
     
     context(`#async tests`, ()=> {
-        const delay = (ms:number) => new Promise((resolve) => setTimeout(resolve, ms));
+        // const delay = (ms:number) => new Promise((resolve) => setTimeout(resolve, ms));
 
         it(`should muliply several numbers with delay`, async ()=> {
             await delay(300);
@@ -66,6 +68,16 @@ describe('The calc module',  ()=> {
             expect(actual).to.deep.equal([6,8,10,12])
         })
     })
+    context(`#multiplyR tests`, ()=> {
+        // const delay = (ms:number) => new Promise((resolve) => setTimeout(resolve, ms));
+
+        it(`should randomly muliply several numbers with delay`, async ()=> {
+            await delay(300);
+            let actual = multiplyR(2,3,4,5,6);
+            expect(actual.length).to.equal(5)
+        })
+    })
+
 
 });
 
