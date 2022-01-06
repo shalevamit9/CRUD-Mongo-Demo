@@ -42,8 +42,6 @@ router.get(
   raw(async (req, res) => {
     const { limit = 5, page = 0 } = req.query;
     const amountToSkip = page * limit;
-    console.log("skip", amountToSkip);
-    console.log("typeof", typeof amountToSkip);
     const users = await user_model
       .find()
       .skip(amountToSkip)
