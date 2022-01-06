@@ -1,0 +1,29 @@
+{
+  "name": "express-crud-mongo",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "scripts": {
+    "start": "node -r dotenv/config ./server/api.js",
+    "dev": "nodemon -r dotenv/config ./server/api.js"
+  },
+  "keywords": [],
+  "author": "Yariv Gilad <yariv.gilad@gmail.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/express": "^4.17.13",
+    "@types/node": "^17.0.8",
+    "nodemon": "^2.0.4",
+    "typescript": "^4.5.4"
+  },
+  "dependencies": {
+    "@ajar/marker": "^1.2.3",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "dotenv": "^6.2.0",
+    "express": "^4.17.1",
+    "joi": "^17.5.0",
+    "mongoose": "^5.9.21",
+    "morgan": "^1.10.0"
+  }
+}
