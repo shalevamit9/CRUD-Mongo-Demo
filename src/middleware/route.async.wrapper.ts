@@ -1,9 +1,16 @@
-export default (fn) => (req, res, next) => fn(req, res, next).catch(next);
+import { RequestHandler } from "express";
 
-// export default fn => (req, res, next) => {
-//       fn(req,res,next).catch(next);
-// };
-//  .catch((err)=> next(err))
+// export default (fn) => (req, res, next) => fn(req, res, next).catch(next);
+
+export default (asyncCb: RequestHandler): RequestHandler => {
+    return async (req, res, next) => {
+        try {
+            await asyncCb(req, res, next);
+        } catch (err) {
+            next(err);
+        }
+    };
+};
 
 // export default fn => (req, res, next) => {
 //       fn(req,res,next).catch((err)=>{
