@@ -1,46 +1,45 @@
-import raw from "../../middleware/route.async.wrapper.js";
+import raw from '../../middleware/route.async.wrapper.js';
+import userController from './user.controller.js';
+import express from 'express';
+import { validateSchema } from '../../middleware/validate.schema.middleware.js';
 import {
-    getAllUsers,
-    getUserById,
-    createUser,
-    updateUser,
-    deleteUser,
-} from "./user.controller.js";
-import express from "express";
-import {
-    createUserSchema,
-    paginationSchema,
-    updateUserSchema,
-    validateSchema,
-} from "./user.validator.js";
+  createUserSchema,
+  paginationSchema,
+  updateUserSchema
+} from './user.validation.schemas.js';
 
-const router = express.Router();
+class UserRouter {
+  private readonly _router = express.Router();
 
-// GET ALL USERS
-router.get(
-    "/",
-    raw(validateSchema(paginationSchema, "query")),
-    raw(getAllUsers)
-);
+  constructor() {
+    this._router.get(
+      '/',
+      raw(validateSchema(paginationSchema, 'query')),
+      raw(userController.getAllUsers)
+    );
 
-// GETS A SINGLE USER
-router.get("/:id", raw(getUserById));
+    this._router.get('/:id', raw(userController.getUserById));
 
-// CREATES A NEW USER
-router.post(
-    "/",
-    raw(validateSchema(createUserSchema, "body")),
-    raw(createUser)
-);
+    this._router.post(
+      '/',
+      raw(validateSchema(createUserSchema, 'body')),
+      raw(userController.createUser)
+    );
 
-// UPDATES A SINGLE USER
-router.put(
-    "/:id",
-    raw(validateSchema(updateUserSchema, "body")),
-    raw(updateUser)
-);
+    this._router.put(
+      '/:id',
+      raw(validateSchema(updateUserSchema, 'body')),
+      raw(userController.updateUser)
+    );
 
-// DELETES A USER
-router.delete("/:id", raw(deleteUser));
+    this._router.delete('/:id', raw(userController.deleteUser));
+  }
 
-export default router;
+  get router() {
+    return this._router;
+  }
+}
+
+const userRouter = new UserRouter();
+
+export default userRouter;
