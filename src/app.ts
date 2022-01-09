@@ -6,7 +6,8 @@ import log from '@ajar/marker';
 import {
   errorLogger,
   errorResponse,
-  printError
+  printError,
+  urlNotFound
 } from './middleware/errors.handler.js';
 import userRouter from './modules/user/user.router.js';
 import { connectDb } from './db/mongoose.connection.js';
@@ -43,6 +44,7 @@ class App {
   }
 
   private initializeErrorMiddlewares() {
+    this._app.use(urlNotFound);
     this._app.use(printError);
     this._app.use(errorLogger(App.ERRORS_LOG_PATH));
     this._app.use(errorResponse);
