@@ -1,7 +1,7 @@
-import { NextFunction, Request, RequestHandler, Response } from "express";
+import { RequestHandler } from "express";
 import Joi from "joi";
 
-const createUserValidationSchema = Joi.object({
+export const createUserSchema = Joi.object({
     first_name: Joi.string()
         .pattern(/^[a-zA-Z]+$/)
         .required(),
@@ -16,7 +16,7 @@ const createUserValidationSchema = Joi.object({
         .required(),
 });
 
-const updateUserValidationSchema = Joi.object({
+export const updateUserSchema = Joi.object({
     first_name: Joi.string().pattern(/^[a-zA-Z]+$/),
     last_name: Joi.string().pattern(/^[a-zA-Z]+$/),
     email: Joi.string().email(),
@@ -26,50 +26,18 @@ const updateUserValidationSchema = Joi.object({
         .pattern(/^[0-9]+$/),
 });
 
-const paginationValidationSchema = Joi.object({
+export const paginationSchema = Joi.object({
     limit: Joi.number(),
     page: Joi.number(),
 });
 
-export async function validateCreateUser(
-    req: Request,
-    res: Response,
-    next: NextFunction
-) {
-    await createUserValidationSchema.validateAsync(req.body);
-    next();
-}
-
-export async function validateUpdateUser(
-    req: Request,
-    res: Response,
-    next: NextFunction
-) {
-    await updateUserValidationSchema.validateAsync(req.body);
-    next();
-}
-
-export async function validatePagination(
-    req: Request,
-    res: Response,
-    next: NextFunction
-) {
-    // option 1 - validate normalize and attach to request
-    // const normalizedQuery = await paginationValidator.validateAsync(req.query);
-    // req.query = normalizedQuery;
-    // next();
-
-    // option 2 - validate only, and casting will be the controllers job
-    await paginationValidationSchema.validateAsync(req.query);
-    next();
-}
-
 /* optional generic validation middleware */
-// export function validateSchema(
-//     validatorSchema: Joi.ObjectSchema<unknown>
-// ): RequestHandler {
-//     return async function (req, res, next) {
-//         await validatorSchema.validateAsync(req.body);
-//         next();
-//     };
-// }
+export function validateSchema(
+    validationSchema: Joi.ObjectSchema<unknown>,
+    validationKey: "body" | "query"
+): RequestHandler {
+    return async function (req, res, next) {
+        await validationSchema.validateAsync(req[validationKey]);
+        next();
+    };
+}
