@@ -1,0 +1,15 @@
+ie9iqzhm94o - 404 :: Url with path /aps not found >> Error: Url with path /aps not found
+    at urlNotFound (file:///Users/amitshalev/Desktop/my-nodejs-workspace/server/javascript/crud-express-mongo/dist/middleware/errors.handler.js:6:10)
+    at Layer.handle [as handle_request] (/Users/amitshalev/Desktop/my-nodejs-workspace/server/javascript/crud-express-mongo/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/amitshalev/Desktop/my-nodejs-workspace/server/javascript/crud-express-mongo/node_modules/express/lib/router/index.js:317:13)
+    at /Users/amitshalev/Desktop/my-nodejs-workspace/server/javascript/crud-express-mongo/node_modules/express/lib/router/index.js:284:7
+    at Function.process_params (/Users/amitshalev/Desktop/my-nodejs-workspace/server/javascript/crud-express-mongo/node_modules/express/lib/router/index.js:335:12)
+    at next (/Users/amitshalev/Desktop/my-nodejs-workspace/server/javascript/crud-express-mongo/node_modules/express/lib/router/index.js:275:10)
+    at jsonParser (/Users/amitshalev/Desktop/my-nodejs-workspace/server/javascript/crud-express-mongo/node_modules/body-parser/lib/types/json.js:110:7)
+    at Layer.handle [as handle_request] (/Users/amitshalev/Desktop/my-nodejs-workspace/server/javascript/crud-express-mongo/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/amitshalev/Desktop/my-nodejs-workspace/server/javascript/crud-express-mongo/node_modules/express/lib/router/index.js:317:13)
+    at /Users/amitshalev/Desktop/my-nodejs-workspace/server/javascript/crud-express-mongo/node_modules/express/lib/router/index.js:284:7
+zmb47zuking - 404 :: Url with path /api/users/61d6cabe3291f143d45a3555 not found >> Error: Url with path /api/users/61d6cabe3291f143d45a3555 not found
+    at UserController.getUserById (file:///Users/amitshalev/Desktop/my-nodejs-workspace/server/javascript/crud-express-mongo/dist/modules/user/user.controller.js:21:36)
+    at processTicksAndRejections (node:internal/process/task_queues:94:5)
+    at async file:///Users/amitshalev/Desktop/my-nodejs-workspace/server/javascript/crud-express-mongo/dist/middleware/route.async.wrapper.js:5:13
